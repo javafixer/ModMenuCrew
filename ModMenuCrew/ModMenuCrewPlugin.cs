@@ -172,12 +172,7 @@ namespace ModMenuCrew
                     InitializeMainWindowIMGUI();
                     InitializeTabsForGameIMGUI(); // Seu código original aqui
 
-                    if (!isModGloballyActivated)
-                    {
-                        currentActivationStatusMessage = "Enter your activation key or get a new one.";
-                        SetupActivationUI_TMP();
-                        // A abertura automática da UI de ativação agora é no primeiro Update.
-                    }
+
                     ModMenuCrewPlugin.Instance.Log.LogInfo($"DebuggerComponent: Awake completed. Mod initially {(isModGloballyActivated ? "activated" : "deactivated")}.");
                 }
                 catch (Exception ex) { UnityEngine.Debug.LogError($"[ModMenuCrew] Critical error DebuggerComponent.Awake: {ex}"); } // ex é usado aqui
@@ -190,7 +185,7 @@ namespace ModMenuCrew
                 // Apenas define uma largura e posição inicial. A altura será automática. (ajustado -3%)
                 mainWindow = new DragWindow(new Rect(24, 24, 514, 0), $"ModMenuCrew v{ModMenuCrewPlugin.ModVersion} - ACTIVATED", DrawMainModWindowIMGUI)
                 {
-                    Enabled = false
+                    Enabled = true
                 };
                 // Altura mínima padrão do viewport (aba Game terá valor ainda menor)
                 mainWindow.SetViewportMinHeight(160f);
